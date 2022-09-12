@@ -29,3 +29,31 @@ def click(css_selector, driver):
     elt.click()
     """)
     # driver.find_element(By.CSS_SELECTOR, css_selector).click()
+
+def click_by_text(css_selector, text, driver):
+    driver.execute_script(f"""
+    let elts = document.querySelectorAll('{css_selector}')
+elts.forEach((elt)=>{{
+  if(elt.innerText.includes('{text}'))
+      elt.click()
+}})""")
+
+def has_text(css_selector, text, driver):
+    return driver.execute_script(f"""
+    let elts = document.querySelectorAll('{css_selector}')
+let output = false;
+elts.forEach((elt)=>{{
+if(elt.innerText.includes("{text}")){{
+output = true;
+return
+}}
+}})
+return output""")
+
+
+def set_select_value(css_selector, value, driver):
+    from selenium.webdriver.support.ui import Select
+    #driver.execute_script(f"""let elt = document.querySelector('{css_selector}')
+    #elt.value = '{value}'""")
+    s = Select(driver.find_element(By.CSS_SELECTOR, css_selector))
+    s.select_by_value(value)
