@@ -75,3 +75,8 @@ def input_value(css_selector, driver):
 def navigate_by_text(css_selector, text, driver):
     click_by_text(css_selector, text, driver)
     sleep(0.5)
+
+def clear_input(css_selector, driver):
+    elt = driver.find_element(By.CSS_SELECTOR, css_selector)
+    elt.clear()
+    elt.send_keys(" \b")
