@@ -38,3 +38,23 @@ class MemberAlterTest(unittest.TestCase):
         # Check if the information has been updated
         navigate_by_text("a", "Owners", driver)
         self.assertTrue(has_text("td", "___", driver))
+
+    def test_delete(self):
+        driver = self.driver
+
+        # Login as admin
+        navigate("http://localhost:8080/profile.html", driver)
+        click_by_text("a", "Logout", driver)
+        navigate("http://localhost:8080/backoffice.html", driver)
+        send_keys("#fUsername", "admin", driver)
+        send_keys("#fPassword", "admin", driver)
+        click_submit("button[type=submit]", driver)
+
+        # Delete owner
+        navigate_by_text("a", "Owners", driver)
+        navigate_by_text("a.btn-danger", "Delete", driver)
+        click_submit("button[type=submit]", driver)
+
+        # Check if the information has been updated
+        navigate_by_text("a", "Owners", driver)
+        self.assertFalse(has_text("td", "Delete", driver))
