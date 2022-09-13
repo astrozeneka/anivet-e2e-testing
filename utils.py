@@ -1,4 +1,5 @@
 
+from time import sleep
 from selenium.webdriver.common.by import By
 import re
 from selenium import webdriver
@@ -30,6 +31,10 @@ def click(css_selector, driver):
     """)
     # driver.find_element(By.CSS_SELECTOR, css_selector).click()
 
+def click_submit(css_selector, driver):
+    click(css_selector, driver)
+    sleep(0.5)
+
 def click_by_text(css_selector, text, driver):
     driver.execute_script(f"""
     let elts = document.querySelectorAll('{css_selector}')
@@ -57,3 +62,16 @@ def set_select_value(css_selector, value, driver):
     #elt.value = '{value}'""")
     s = Select(driver.find_element(By.CSS_SELECTOR, css_selector))
     s.select_by_value(value)
+
+
+def navigate(url, driver):
+    driver.get(url)
+    sleep(0.5)
+
+
+def input_value(css_selector, driver):
+    return driver.execute_script(f"return document.querySelector('{css_selector}').value")
+
+def navigate_by_text(css_selector, text, driver):
+    click_by_text(css_selector, text, driver)
+    sleep(0.5)
