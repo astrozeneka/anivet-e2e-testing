@@ -28,7 +28,7 @@ class BackofficeUpdateMemberErrorTest(unittest.TestCase):
     def test_registerNUsers(self):
         self.driver.get("http://localhost:3001/api/v1/install")
         driver = self.driver
-        for i in range(0, 35):
+        for i in range(0, 50):
             navigate("http://localhost:8080/register.html", driver)
             fill_random_personnal_infos(driver)
             click_submit("button[type=submit]", driver)

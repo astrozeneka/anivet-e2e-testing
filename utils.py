@@ -80,3 +80,7 @@ def clear_input(css_selector, driver):
     elt = driver.find_element(By.CSS_SELECTOR, css_selector)
     elt.clear()
     elt.send_keys(" \b")
+
+def set_server_time(time, driver):
+    navigate(f"http://localhost:3001/api/v1/fakeTime/set?time={time}", driver)
+
