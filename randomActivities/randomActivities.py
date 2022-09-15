@@ -1,4 +1,4 @@
-from bt.btInformation import fill_biological_test_form
+from bt.btInformation import fill_biological_test_form, fill_biological_test_with_multiple_samples
 from registration.personnalInformations import fill_random_personnal_infos
 from utils import *
 from time import sleep
@@ -42,3 +42,26 @@ def add_random_orders(max, users, driver):
 
     return output
 
+def add_random_orders_with_multiple_samples(max, users, driver):
+    for i in range(0, max):
+
+        # -------------
+        # LOGIN AS USER
+        user = random.choice(users)
+        navigate("http://localhost:8080/profile.html", driver)
+        set_select_value("#fType", user['type'], driver)
+        send_keys("#fUsername", user['username'], driver)
+        send_keys("#fPassword", user['password'], driver)
+        click_submit("button[type=submit]", driver)
+
+        # -------------
+        # FILL FORM
+        navigate("http://localhost:8080/order.html", driver)
+        fill_biological_test_with_multiple_samples(user, driver)
+        click_submit("button[type=submit]", driver)
+
+        # -------------
+        # DISCONNECT
+        navigate("http://localhost:8080/profile.html", driver)
+        navigate_by_text("a", "Logout", driver)
+    print()

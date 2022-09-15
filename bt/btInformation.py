@@ -1,6 +1,6 @@
 import random
 from time import sleep
-from utils import send_keys
+from utils import *
 
 animal_list = ["Dog", "Cat", "Bird", "Snake", "Lemur"]
 animal_specie_list = {
@@ -34,3 +34,11 @@ def fill_biological_test_form(index, driver):
     send_keys("#fImage" + index, sample["image"], driver)
     sleep(0.5)
     return sample
+
+def fill_biological_test_with_multiple_samples(user, driver):
+
+    sample_len = random.randint(1, 8)
+    for i in range(0, sample_len-1):
+        fill_biological_test_form(i, driver)
+        navigate_by_text("button", "Add sample", driver)
+    fill_biological_test_form(sample_len-1, driver)
