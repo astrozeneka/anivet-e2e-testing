@@ -4,6 +4,7 @@ from registration.personnalInformations import *
 from time import sleep
 from seleniumrequests import Chrome
 import json
+from randomActivities import *
 
 class HistoryTest(unittest.TestCase):
     def setUp(self):
@@ -45,3 +46,22 @@ class HistoryTest(unittest.TestCase):
         click_submit("button[type=submit]", driver)
 
         print() # Check manually
+
+
+    def test_history_3(self):
+        driver = self.driver
+        self.users = []
+        self.orders = []
+
+
+        # EACH DAY
+        for i in range(1, 4):
+            date_str = f"2022-09-{i}"
+            set_server_time(date_str, driver)
+            self.users = self.users + add_rand_users(2, driver)
+            self.orders = self.orders + add_random_orders(3, self.users, driver)
+
+        #-----------
+        # September 01
+        # Create random users
+        print()
