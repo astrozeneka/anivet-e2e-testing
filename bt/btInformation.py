@@ -2,7 +2,7 @@ import random
 from time import sleep
 from utils import *
 
-animal_list = ["Dog", "Cat", "Bird", "Snake", "Lemur"]
+animal_list = ["Dog", "Cat", "Bird", "Snake"]
 animal_specie_list = {
     "Dog": ["German shepherd", "Doberman", "Labrador", "Thai bangkaew", "Dalmatian"],
     "Cat": ["Ringtail", "Asian", "Balinese", "British shorthair", "Burmanese", "Egyptian Mau"],

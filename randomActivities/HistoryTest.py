@@ -74,6 +74,8 @@ class HistoryTest(unittest.TestCase):
         for i in range(1, 4):
             date_str = f"2022-09-{i}"
             set_server_time(date_str, driver)
-            self.users = self.users + add_rand_users(2, driver)
-            add_random_orders_with_multiple_samples(3, self.users, driver)
+            self.users = self.users + add_rand_users(1, driver)
+            add_random_orders_with_multiple_samples(1, self.users, driver)
 
+
+        print()
