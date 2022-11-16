@@ -56,6 +56,14 @@ return
 return output""")
 
 
+def get_selection_option_values(css_selector, driver):
+    return driver.execute_script(f"""
+    output=[]
+let opts=document.querySelectorAll('{css_selector}>option')
+opts.forEach(opt=>output.push(opt.value))
+return output""")
+
+
 def set_select_value(css_selector, value, driver):
     from selenium.webdriver.support.ui import Select
     #driver.execute_script(f"""let elt = document.querySelector('{css_selector}')

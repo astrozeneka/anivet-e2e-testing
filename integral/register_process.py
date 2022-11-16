@@ -18,13 +18,13 @@ class RegisterProcess(unittest.TestCase):
         driver.get("http://anivet.local/register.html")
 
         # FILL INFORMATION ON THE WEBSITE
-        set_select_value("#fType", "breeder", driver)
-        u = fill_random_personnal_infos_without_type(driver)
+        u = fill_random_personnal_infos(driver)
+        # set_select_value("#fType", "breeder", driver)
         click_submit("button[type=submit]", driver)
 
         # USER ACCEPT THE TERMS AND CONDITIONS
         navigate_by_text("button", "Accept", driver)
-        sleep(2) # Wait two seconds
+        sleep(2.2) # Wait two seconds
 
         # FILL ORDERS
         send_keys("#fName1", u["name1"], driver)
@@ -42,5 +42,10 @@ class RegisterProcess(unittest.TestCase):
         send_keys("#fFile", "/Users/astrozeneka/Downloads/Billet Ethiopian .pdf", driver)
         navigate_by_text("button", "Submit", driver)
 
+        print()
+
+    def test_registration_x15(self):
+        for i in range(0, 3):
+            self.test_registration()
 
         print()

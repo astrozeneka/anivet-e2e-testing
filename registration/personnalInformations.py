@@ -68,6 +68,21 @@ def fill_random_personnal_infos_without_type(driver):
     sleep(0.5)
     return user
 
+
+def fill_random_personnal_infos_without_type_and_address(driver):
+
+    user = random_personnal_infos(type=type)
+    send_keys("#fName1", user['name1'], driver)
+    send_keys("#fName2", user['name2'], driver)
+    send_keys('#fPhone', user['phone'], driver)
+    send_keys('#fEmail', user['email'], driver)
+    send_keys('#fUsername', user['username'], driver)
+    send_keys('#fPassword', user['password'], driver)
+    send_keys('#fPasswordCheck', user['passwordCheck'], driver)
+    sleep(0.5)
+    return user
+
+
 if __name__ == '__main__':
     o = random_personnal_infos()
 
